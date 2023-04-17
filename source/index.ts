@@ -57,6 +57,7 @@ class Stdin extends EventEmitter {
 }
 
 type Instance = {
+	act: (callback: () => unknown) => void;
 	rerender: (tree: ReactElement) => void;
 	unmount: () => void;
 	cleanup: () => void;
@@ -89,6 +90,7 @@ export const render = (tree: ReactElement): Instance => {
 	instances.push(instance);
 
 	return {
+		act: instance.act,
 		rerender: instance.rerender,
 		unmount: instance.unmount,
 		cleanup: instance.cleanup,
